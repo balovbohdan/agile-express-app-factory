@@ -1,0 +1,23 @@
+{
+  "name": "agile-express-app-template",
+  "version": "1.0.0",
+  "description": "TypeSctipt template for creating agile Express apps.",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "dev": "ts-node-dev --respawn --transpileOnly src/index.ts",
+    "prod": "tsc && node app/index.js"
+  },
+  "author": "balov_bohdan",
+  "license": "ISC",
+  "dependencies": {
+    "@types/core-js": "^2.5.0",
+    "@types/express": "^4.16.1",
+    "@types/node": "^11.11.0",
+    "express": "^4.16.4",
+    "immutable": "^4.0.0-rc.12",
+    "ts-node-dev": "^1.0.0-pre.32",
+    "tslint": "^5.13.1",
+    "typescript": "^3.3.3333"
+  }
+}
