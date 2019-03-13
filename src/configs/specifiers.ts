@@ -1,23 +1,7 @@
-import {List} from 'immutable';
+import {Method} from '../lib/endpoints/specifiers';
+import {Type} from '../lib/endpoints/entities/entity';
 
-import {Method} from './Method';
-import {Type} from '../entities/entity';
-
-export type EntitySpec = RouterSpec|EndpointSpec;
-
-export type RouterSpec = {
-    type:Type;
-    name:string;
-    entities:EntitySpec[];
-};
-
-export type EndpointSpec = {
-    type:Type;
-    name:string;
-    methods:Method[];
-};
-
-const raw = [
+export const specifiers = [
     {
         name: 'foo',
         type: Type.ENDPOINT,
@@ -52,5 +36,3 @@ const raw = [
         ]
     }
 ];
-
-export const specifiers = List<EntitySpec>(raw);
