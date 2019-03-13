@@ -1,7 +1,7 @@
 import {Application} from 'express';
 
 import {EntitySpec} from '../../specifiers';
-import {AppFactory, Container} from '../../container';
+import {factories, Container} from '../../container';
 import {EntityApplierByContainer} from './EntityApplierByContainer';
 
 export class EntityApplierByApp {
@@ -27,14 +27,11 @@ export class EntityApplierByApp {
 
         const entitySpec = this.entitySpec;
 
-        return {
-            container,
-            entitySpec
-        };
+        return { container, entitySpec };
     }
 
     private createContainer():Container {
-        return AppFactory.create(this.app);
+        return factories.App.create(this.app);
     }
 
     private readonly app:Application;

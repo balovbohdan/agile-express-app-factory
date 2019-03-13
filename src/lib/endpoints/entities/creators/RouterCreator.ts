@@ -1,8 +1,8 @@
 import {Router as RouterFactory} from 'express';
 import {Router as CoreRouter} from 'express-serve-static-core';
 
-import {Router, Type} from '../entity';
-import {Container} from '../../container';
+import {Router} from '../entity';
+import {Container, factories} from '../../container';
 import {EntityApplierByContainer} from '../appliers';
 import {EntitySpec, RouterSpec} from '../../specifiers';
 
@@ -37,11 +37,7 @@ export class RouterCreator {
     }
 
     private createContainer():Container {
-        const type = Type.ROUTER;
-
-        const {router:core, spec:{name}} = this.router;
-
-        return { core, type, name };
+        return factories.Router.createFromEntity(this.router);
     }
 
     private static createRouter(spec:RouterSpec):Router {
