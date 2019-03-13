@@ -6,38 +6,53 @@ import {Container, factories} from '../../container';
 import {EntityApplierByContainer} from '../appliers';
 import {EntitySpec, RouterSpec} from '../../specifiers';
 
+type Props = {
+    container:Container;
+    routerSpec:RouterSpec;
+};
+
 export class RouterCreator {
-    static create(routerSpec:RouterSpec):Router {
-        const self = new RouterCreator(routerSpec);
+    static create(props:Props):Promise<Router> {
+        const self = new RouterCreator(props);
 
         return self.create();
     }
 
-    private constructor(routerSpec:RouterSpec) {
-        this.router = RouterCreator.createRouter(routerSpec);
+    private constructor(props:Props) {
+        this.container = props.container;
+
+        this.router = RouterCreator.createRouter(props.routerSpec);
     }
 
-    private create():Router {
-        this.applyEntities();
+    private async create():Promise<Router> {
+        await this.applyEntities();
 
         return this.router;
     }
 
-    private applyEntities() {
+    private async applyEntities() {
         const {entities} = this.router.spec;
 
-        for (let entitySpec of entities)
-            this.applyEntity(entitySpec);
+        const callback = entitySpec => this.applyEntity(entitySpec);
+
+        const promises = entities.map(callback);
+
+        await Promise.all(promises);
     }
 
-    private applyEntity(entitySpec:EntitySpec) {
+    private async applyEntity(entitySpec:EntitySpec) {
         const container = this.createContainer();
 
-        EntityApplierByContainer.go({ container, entitySpec });
+        await EntityApplierByContainer.go({ container, entitySpec });
     }
 
     private createContainer():Container {
-        return factories.Router.createFromEntity(this.router);
+        const props = {
+            entity: this.router,
+            container: this.container
+        };
+
+        return factories.Router.createFromEntity(props);
     }
 
     private static createRouter(spec:RouterSpec):Router {
@@ -47,4 +62,5 @@ export class RouterCreator {
     }
 
     private readonly router:Router;
+    private readonly container:Container;
 }

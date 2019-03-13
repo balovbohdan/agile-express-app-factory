@@ -9,10 +9,10 @@ type Data = {
 };
 
 export class EndpointApplier {
-    static go(data:Data) {
+    static async go(data:Data) {
         const self = new EndpointApplier(data);
 
-        self.go();
+        await self.go();
     }
 
     private constructor(data:Data) {
@@ -20,33 +20,24 @@ export class EndpointApplier {
         this.endpointSpec = data.endpointSpec;
     }
 
-    private go() {
-        const props = this.createApplierProps();
+    private async go() {
+        const props = await this.createApplierProps();
 
-        EntityToContainerApplier.go(props);
+        await EntityToContainerApplier.go(props);
     }
 
-    private createApplierProps() {
+    private async createApplierProps() {
         const container = this.container;
 
-        const entity = this.createEndpoint();
+        const entity = await this.createEndpoint();
 
         return { entity, container };
     }
 
-    private createEndpoint():Endpoint {
+    private async createEndpoint():Promise<Endpoint> {
         const spec = this.endpointSpec;
 
-        const listener = this.createListener();
-
-        return { spec, listener };
-    }
-
-    private createListener() {
-        const {name:containerName} = this.container;
-        const {name:endpointName} = this.endpointSpec;
-
-        return (req, res) => res.send(`Hello from '${containerName}/${endpointName}'.`);
+        return { spec };
     }
 
     private readonly container:Container;

@@ -1,6 +1,5 @@
 import {List} from 'immutable';
 
-import {Method} from './Method';
 import {Type} from '../entities/entity';
 
 export type Specifiers = List<EntitySpec>;
@@ -15,5 +14,4 @@ export type RouterSpec = {
 export type EndpointSpec = {
     type:Type;
     name:string;
-    methods:Method[];
 };

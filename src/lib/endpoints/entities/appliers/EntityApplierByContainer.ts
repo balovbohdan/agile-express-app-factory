@@ -10,10 +10,10 @@ type Props = {
 };
 
 export class EntityApplierByContainer {
-    static go(props:Props) {
+    static async go(props:Props) {
         const self = new EntityApplierByContainer(props);
 
-        self.go();
+        await self.go();
     }
 
     private constructor(props:Props) {
@@ -21,16 +21,16 @@ export class EntityApplierByContainer {
         this.entitySpec = props.entitySpec;
     }
 
-    private go() {
+    private async go() {
         const {type} = this.entitySpec;
 
         switch (type) {
             case Type.ROUTER:
-                this.applyRouter();
+                await this.applyRouter();
                 break;
 
             case Type.ENDPOINT:
-                this.applyEndpoint();
+                await this.applyEndpoint();
                 break;
 
             default:
@@ -38,18 +38,18 @@ export class EntityApplierByContainer {
         }
     }
 
-    private applyRouter() {
+    private async applyRouter() {
         const container = this.container;
         const routerSpec = <RouterSpec>this.entitySpec;
 
-        RouterApplier.go({ container, routerSpec });
+        await RouterApplier.go({ container, routerSpec });
     }
 
-    private applyEndpoint() {
+    private async applyEndpoint() {
         const container = this.container;
         const endpointSpec = <EndpointSpec>this.entitySpec;
 
-        EndpointApplier.go({ container, endpointSpec });
+        await EndpointApplier.go({ container, endpointSpec });
     }
 
     private static throwInvalidEntityType(type:Type):never {

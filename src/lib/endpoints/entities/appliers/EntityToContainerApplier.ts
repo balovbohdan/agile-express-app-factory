@@ -1,4 +1,5 @@
 import {Container} from '../../container';
+import {ListenersApplier} from '../../../../listeners/utils';
 import {Entity, Endpoint, Router, TypeChecker} from '../entity';
 
 type Props = {
@@ -7,10 +8,10 @@ type Props = {
 };
 
 export class EntityToContainerApplier {
-    static go(props:Props) {
+    static async go(props:Props) {
         const self = new EntityToContainerApplier(props);
 
-        self.go();
+        await self.go();
     }
 
     private constructor(props:Props) {
@@ -18,14 +19,14 @@ export class EntityToContainerApplier {
         this.container = props.container;
     }
 
-    private go() {
+    private async go() {
         const isEntityRouter = this.isEntityRouter();
         const isEntityEndpoint = this.isEntityEndpoint();
 
         if (isEntityRouter)
             this.applyAsRouter();
         else if (isEntityEndpoint)
-            this.applyAsEndpoint();
+            await this.applyAsEndpoint();
         else
             throw new Error(`Failed to resolve entity type.`);
     }
@@ -36,12 +37,14 @@ export class EntityToContainerApplier {
         this.container.core.use(`/${name}`, router);
     }
 
-    private applyAsEndpoint() {
-        const {listener, spec:{name, methods}} = <Endpoint>this.entity;
+    private async applyAsEndpoint() {
+        const container = this.container;
+        const {spec:endpointSpec} = <Endpoint>this.entity;
 
-        const callback = method => this.container.core[method](`/${name}`, listener);
-
-        methods.forEach(callback);
+        await ListenersApplier.go({
+            container,
+            endpointSpec
+        });
     }
 
     private isEntityRouter() {

@@ -7,6 +7,7 @@ export type Container = {
     core:Core;
     type:Type;
     name:string;
+    path:string;
 };
 
 type Core = Application|Router;

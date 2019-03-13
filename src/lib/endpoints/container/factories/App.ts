@@ -6,9 +6,10 @@ import {Config} from '../../../../configs';
 
 export class App {
     static create(core:Application):Container {
+        const path = '/';
         const type = Type.APP;
         const name = Config.EXPRESS_APP_NAME;
 
-        return { type, core, name };
+        return { path, type, core, name };
     }
 }

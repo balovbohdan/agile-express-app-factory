@@ -1,4 +1,3 @@
-import {Router} from '../entity';
 import {Container} from '../../container';
 import {RouterCreator} from '../creators';
 import {RouterSpec} from '../../specifiers';
@@ -10,33 +9,33 @@ type Props = {
 };
 
 export class RouterApplier {
-    static go(props:Props) {
+    static async go(props:Props) {
         const self = new RouterApplier(props);
 
-        self.go();
+        await self.go();
     }
 
     private constructor(props:Props) {
-        this.container = props.container;
-        this.routerSpec = props.routerSpec;
-
-        this.subRouter = RouterApplier.createSubRouter(this.routerSpec);
+        this.props = props;
     }
 
-    private go() {
-        const entity = this.subRouter;
-        const container = this.container;
+    private async go() {
+        const props = await this.createApplierProps();
 
-        const props = { entity, container };
-
-        EntityToContainerApplier.go(props);
+        await EntityToContainerApplier.go(props);
     }
 
-    private static createSubRouter(routerSpec:RouterSpec) {
-        return RouterCreator.create(routerSpec);
+    private async createApplierProps() {
+        const {container} = this.props;
+
+        const entity = await RouterApplier.createSubRouter(this.props);
+
+        return { entity, container };
     }
 
-    private readonly subRouter:Router;
-    private readonly container:Container;
-    private readonly routerSpec:RouterSpec;
+    private static createSubRouter(props:Props) {
+        return RouterCreator.create(props);
+    }
+
+    private readonly props:Props;
 }

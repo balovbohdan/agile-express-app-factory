@@ -1,3 +1,4 @@
+import {Request, Response} from 'express';
 import {Router as CoreRouter} from 'express-serve-static-core';
 
 import {EndpointSpec, RouterSpec} from '../../specifiers';
@@ -11,5 +12,7 @@ export type Router = {
 
 export type Endpoint = {
     spec:EndpointSpec;
-    listener:(req, res)=>void;
 };
+
+export type Listeners = {[key:string]:Listener};
+export type Listener = (req:Request, res:Response)=>void;
