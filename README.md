@@ -135,6 +135,14 @@ export const post = (req:Request, res:Response) => {
 ```
 
 ```typescript
+// index.ts
+
+import * as starter from './starter';
+
+starter.start();
+```
+
+```typescript
 // listeners/router/endpoint.ts
 
 // Route path for these listeners is defined as regular expression:
