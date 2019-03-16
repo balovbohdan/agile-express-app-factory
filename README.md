@@ -135,7 +135,7 @@ export const post = (req:Request, res:Response) => {
 ```
 
 # GitHub repository
-https://github.com/balovbohdan/matrix-calculus
+https://github.com/balovbohdan/agile-express-app-factory
 
 # Contributing
 Pull requests and forks are welcome. You can use this code freely for your own experiments.
