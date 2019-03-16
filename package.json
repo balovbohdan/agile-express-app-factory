@@ -8,6 +8,10 @@
     "dev": "ts-node-dev --respawn --transpileOnly src/index.ts",
     "prod": "tsc && node app/index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/balovbohdan/agile-express-app-factory"
+  },
   "author": "balov_bohdan",
   "license": "MIT",
   "dependencies": {
