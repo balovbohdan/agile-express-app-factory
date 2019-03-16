@@ -1,7 +1,7 @@
 {
   "name": "agile-express-app-factory",
-  "version": "1.0.1",
-  "description": "TypeSctipt template for creating agile Express.js apps.",
+  "version": "1.0.2",
+  "description": "Agile Express.js application factory.",
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpileOnly src/example-starter/index.ts"
