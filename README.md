@@ -103,7 +103,7 @@ Next step is to create listeners modules for the specified routes.
 ```typescript
 // listeners/foo.ts
 
-// Template for this router is string:
+// Route path for these listeners is defined as string pattern:
 // 'fo?o'
 
 import {Request, Response} from 'express';
@@ -120,7 +120,7 @@ export const post = (req:Request, res:Response) => {
 ```typescript
 // listeners/router/endpoint.ts
 
-// Template for this router is regular expression:
+// Route path for these listeners is defined as regular expression:
 // /^\/?(end)?point\/?$/i
 
 import {Request, Response} from 'express';
