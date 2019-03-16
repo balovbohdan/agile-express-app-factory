@@ -8,6 +8,15 @@ export const getConfig = ():CustomConfig => ({
     specifiers: getSpecifiers()
 });
 
+/**
+ * Creates specifiers of the routers.
+ * Every router must have appropriate listener module.
+ * Modules with listeners must be defined in a special directory.
+ * Within this example listeners directory is 'listeners'.
+ *
+ * Make notice it is allowed to define route path as string,
+ * string pattern and regular expression.
+ */
 const getSpecifiers = ():EntitiesSpec => ([
     {
         name: 'foo',

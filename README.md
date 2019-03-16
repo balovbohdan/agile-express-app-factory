@@ -43,11 +43,10 @@ There is directories structure:
 
 // Configurations factory.
 
-import {
-    EntityType,
-    EntitiesSpec,
-    CustomConfig
-} from 'agile-express-app-factory';
+import {CustomConfig} from '@custom-config';
+
+import {Type} from '@entities/entity';
+import {EntitiesSpec} from '@entities/specifiers/types';
 
 export const getConfig = ():CustomConfig => ({
     port: 9009,
@@ -91,10 +90,8 @@ const getSpecifiers = ():EntitiesSpec => ([
 
 import {Application} from 'express';
 
-import {
-    AppFactory,
-    CustomConfig
-} from 'agile-express-app-factory';
+import {Factory} from '@app-factory';
+import {CustomConfig} from '@custom-config';
 
 import {getConfig} from './config';
 
