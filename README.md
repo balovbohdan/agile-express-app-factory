@@ -20,9 +20,23 @@ npm i --save agile-express-app-factory
 ```
 
 # Usage
-Let's create simple server.
-Make notice it is allowed to define route path as string, string pattern and regular expression.
 This example can be found at `/src/example-starter/` package directory.
+To start example code run `npm run dev` at your terminal in root directory.
+
+Let's go through example code.
+
+There is directories structure:
+
+```
+.
+├── index.ts
+├── config.ts
+├── starter.ts
+└── listeners
+    ├── foo.ts
+    └── router
+        └── endpoint.ts
+```
 
 ```typescript
 // config.ts
@@ -45,6 +59,9 @@ export const getConfig = ():CustomConfig => ({
  * Every router must have appropriate listener module.
  * Modules with listeners must be defined in a special directory.
  * Within this example listeners directory is 'listeners'.
+ * 
+ * Make notice it is allowed to define route path as string,
+ * string pattern and regular expression.
  */
 const getSpecifiers = ():EntitiesSpec => ([
     {
@@ -133,8 +150,6 @@ export const post = (req:Request, res:Response) => {
     res.send('Hello from `listeners/router/endpoint.ts`. Method: POST.');
 };
 ```
-
-Next run `npm run dev` to start server.
 
 # GitHub repository
 https://github.com/balovbohdan/agile-express-app-factory
