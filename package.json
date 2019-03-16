@@ -1,6 +1,6 @@
 {
   "name": "agile-express-app-factory",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Agile Express.js application factory.",
   "main": "index.ts",
   "scripts": {
