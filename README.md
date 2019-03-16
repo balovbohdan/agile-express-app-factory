@@ -134,6 +134,8 @@ export const post = (req:Request, res:Response) => {
 };
 ```
 
+Next run `npm run dev` to start server.
+
 # GitHub repository
 https://github.com/balovbohdan/agile-express-app-factory
 
