@@ -115,6 +115,14 @@ const createApp = (config:CustomConfig):Promise<Application> =>
     AppFactory.create(config);
 ```
 
+```typescript
+// index.ts
+
+import * as starter from './starter';
+
+starter.start();
+```
+
 Next step is to create listeners modules for the specified routes.
 
 ```typescript
@@ -132,14 +140,6 @@ export const get = (req:Request, res:Response) => {
 export const post = (req:Request, res:Response) => {
     res.send('Hello from `listeners/foo.ts`. Method: POST.');
 };
-```
-
-```typescript
-// index.ts
-
-import * as starter from './starter';
-
-starter.start();
 ```
 
 ```typescript
