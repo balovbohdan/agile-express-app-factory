@@ -2,9 +2,9 @@
   "name": "agile-express-app-factory",
   "version": "1.0.2",
   "description": "Agile Express.js application factory.",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpileOnly src/example-starter/index.ts"
+    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpileOnly src/example-starter/index.ts"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "@types/express": "^4.16.1",
     "@types/node": "^11.11.0",
     "ts-node-dev": "^1.0.0-pre.32",
+    "tsconfig-paths": "^3.8.0",
     "tslint": "^5.13.1",
     "typescript": "^3.3.3333"
   },

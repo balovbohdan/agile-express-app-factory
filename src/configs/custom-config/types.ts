@@ -1,4 +1,4 @@
-import {EntitiesSpec} from '../../endpoints/entities/specifiers/types';
+import {EntitiesSpec} from '@entities/specifiers/types';
 
 export type Config = Readonly<{
     port:number;

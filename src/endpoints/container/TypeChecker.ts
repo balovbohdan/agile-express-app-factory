@@ -1,5 +1,6 @@
 import {Container} from './Container';
-import {Type} from '../entities/entity';
+
+import {Type} from '@entities/entity';
 
 export class TypeChecker {
     static isRouter(container:Container):boolean {

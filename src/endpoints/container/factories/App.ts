@@ -1,8 +1,9 @@
 import {Application} from 'express';
 
+import {Config} from '@sewn-configs';
+import {Type} from '@entities/entity';
+
 import {Container} from '../Container';
-import {Config} from '../../../configs/sewn-configs/index';
-import {Type} from '../../entities/entity';
 
 export class App {
     static create(core:Application):Container {

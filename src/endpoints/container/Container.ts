@@ -1,7 +1,7 @@
 import {Application} from 'express';
 import {Router} from 'express-serve-static-core';
 
-import {Type} from '../entities/entity';
+import {Type} from '@entities/entity';
 
 export type Container = {
     core:Core;

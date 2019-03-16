@@ -1,4 +1,4 @@
-export {Factory as AppFactory} from './app/factory';
-export {CustomConfig} from './configs/custom-config';
-export {Type as EntityType} from './endpoints/entities/entity';
-export {EntitiesSpec} from './endpoints/entities/specifiers/types';
+export {CustomConfig} from '@custom-config';
+import {Factory as AppFactory} from '@app-factory';
+export {Type as EntityType} from '@entities/entity';
+export {EntitiesSpec} from '@entities/specifiers/types';

@@ -1,7 +1,7 @@
 import * as express from 'express';
 
-import {EntityApplierByApp} from '../../endpoints/entities/appliers';
-import {EntitiesSpec} from '../../endpoints/entities/specifiers/types';
+import {EntityApplierByApp} from '@entities/appliers';
+import {EntitiesSpec} from '@entities/specifiers/types';
 
 import {
     Config,
