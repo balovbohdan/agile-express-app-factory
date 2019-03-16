@@ -1,5 +1,5 @@
-import {Type} from '../endpoints/entities/entity';
-import {EntitiesSpec} from '../endpoints/entities/specifiers/types';
+import {Type} from '../../endpoints/entities/entity/index';
+import {EntitiesSpec} from '../../endpoints/entities/specifiers/types';
 
 export const specifiers:EntitiesSpec = [
     {

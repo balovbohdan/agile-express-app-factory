@@ -2,7 +2,7 @@ import {Application} from 'express';
 
 import {getConfig} from './config';
 import {Factory} from '../app/factory';
-import {CustomConfig} from '../custom-config';
+import {CustomConfig} from '../configs/custom-config';
 
 export const start = () => {
     doStart()

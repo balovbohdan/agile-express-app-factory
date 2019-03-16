@@ -31,7 +31,7 @@ export class ListenersImporter {
         const {path} = this.container;
         const {name} = this.endpointSpec;
 
-        return `../../../../listeners` + path + name;
+        return `../../../../example-starter/listeners` + path + name;
     }
 
     private readonly container:Container;
