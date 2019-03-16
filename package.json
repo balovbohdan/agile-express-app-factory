@@ -12,6 +12,16 @@
     "type": "git",
     "url": "https://github.com/balovbohdan/agile-express-app-factory"
   },
+  "keywords": [
+    "typescript",
+    "express",
+    "express-js",
+    "nodejs",
+    "node-js",
+    "nodejs-server",
+    "javascript",
+    "js"
+  ],
   "author": "balov_bohdan",
   "license": "MIT",
   "dependencies": {
