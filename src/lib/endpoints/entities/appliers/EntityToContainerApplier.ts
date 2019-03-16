@@ -8,10 +8,10 @@ type Props = {
 };
 
 export class EntityToContainerApplier {
-    static async go(props:Props) {
+    static go(props:Props):Promise<Container> {
         const self = new EntityToContainerApplier(props);
 
-        await self.go();
+        return self.go();
     }
 
     private constructor(props:Props) {
@@ -19,29 +19,31 @@ export class EntityToContainerApplier {
         this.container = props.container;
     }
 
-    private async go() {
+    private async go():Promise<Container> {
         const isEntityRouter = this.isEntityRouter();
         const isEntityEndpoint = this.isEntityEndpoint();
 
         if (isEntityRouter)
-            this.applyAsRouter();
+            return this.applyAsRouter();
         else if (isEntityEndpoint)
-            await this.applyAsEndpoint();
+            return await this.applyAsEndpoint();
         else
             throw new Error(`Failed to resolve entity type.`);
     }
 
-    private applyAsRouter() {
+    private applyAsRouter():Container {
         const {router, spec:{name}} = <Router>this.entity;
 
         this.container.core.use(`/${name}`, router);
+
+        return this.container;
     }
 
-    private async applyAsEndpoint() {
+    private applyAsEndpoint():Promise<Container> {
         const container = this.container;
         const {spec:endpointSpec} = <Endpoint>this.entity;
 
-        await ListenersApplier.go({
+        return ListenersApplier.go({
             container,
             endpointSpec
         });

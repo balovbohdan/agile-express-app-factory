@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
 
 export const get = (req:Request, res:Response) => {
-    res.send('hello');
+    res.send('hello from foo');
 };

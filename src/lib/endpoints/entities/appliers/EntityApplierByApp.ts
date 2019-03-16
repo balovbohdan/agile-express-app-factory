@@ -5,10 +5,10 @@ import {factories, Container} from '../../container';
 import {EntityApplierByContainer} from './EntityApplierByContainer';
 
 export class EntityApplierByApp {
-    static async go(app:Application, entitySpec:EntitySpec) {
+    static go(app:Application, entitySpec:EntitySpec):Promise<Application> {
         const self = new EntityApplierByApp(app, entitySpec);
 
-        await self.go();
+        return self.go();
     }
 
     private constructor(app:Application, entitySpec:EntitySpec) {
@@ -16,10 +16,12 @@ export class EntityApplierByApp {
         this.entitySpec = entitySpec;
     }
 
-    private async go() {
+    private async go():Promise<Application> {
         const props = this.createApplierProps();
 
-        await EntityApplierByContainer.go(props);
+        const {core} = await EntityApplierByContainer.go(props);
+
+        return <Application>core;
     }
 
     private createApplierProps() {

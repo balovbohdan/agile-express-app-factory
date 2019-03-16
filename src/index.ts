@@ -1,3 +1,3 @@
-import {Starter} from './lib/app/starter';
+import {starter} from './lib/app/starter';
 
-Starter.start();
+starter.start();

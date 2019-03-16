@@ -9,10 +9,10 @@ type Data = {
 };
 
 export class EndpointApplier {
-    static async go(data:Data) {
+    static go(data:Data):Promise<Container> {
         const self = new EndpointApplier(data);
 
-        await self.go();
+        return self.go();
     }
 
     private constructor(data:Data) {
@@ -20,10 +20,10 @@ export class EndpointApplier {
         this.endpointSpec = data.endpointSpec;
     }
 
-    private async go() {
+    private async go():Promise<Container> {
         const props = await this.createApplierProps();
 
-        await EntityToContainerApplier.go(props);
+        return await EntityToContainerApplier.go(props);
     }
 
     private async createApplierProps() {

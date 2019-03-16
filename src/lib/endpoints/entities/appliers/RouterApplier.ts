@@ -9,20 +9,20 @@ type Props = {
 };
 
 export class RouterApplier {
-    static async go(props:Props) {
+    static go(props:Props):Promise<Container> {
         const self = new RouterApplier(props);
 
-        await self.go();
+        return self.go();
     }
 
     private constructor(props:Props) {
         this.props = props;
     }
 
-    private async go() {
+    private async go():Promise<Container> {
         const props = await this.createApplierProps();
 
-        await EntityToContainerApplier.go(props);
+        return await EntityToContainerApplier.go(props);
     }
 
     private async createApplierProps() {

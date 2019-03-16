@@ -10,10 +10,10 @@ type Props = {
 };
 
 export class EntityApplierByContainer {
-    static async go(props:Props) {
+    static go(props:Props):Promise<Container> {
         const self = new EntityApplierByContainer(props);
 
-        await self.go();
+        return self.go();
     }
 
     private constructor(props:Props) {
@@ -21,39 +21,32 @@ export class EntityApplierByContainer {
         this.entitySpec = props.entitySpec;
     }
 
-    private async go() {
+    private async go():Promise<Container> {
         const {type} = this.entitySpec;
 
         switch (type) {
             case Type.ROUTER:
-                await this.applyRouter();
-                break;
+                return this.applyRouter();
 
             case Type.ENDPOINT:
-                await this.applyEndpoint();
-                break;
-
-            default:
-                EntityApplierByContainer.throwInvalidEntityType(type);
+                return this.applyEndpoint();
         }
+
+        throw new Error(`Got invalid entity type: ${type}.`);
     }
 
-    private async applyRouter() {
+    private applyRouter():Promise<Container> {
         const container = this.container;
         const routerSpec = <RouterSpec>this.entitySpec;
 
-        await RouterApplier.go({ container, routerSpec });
+        return RouterApplier.go({ container, routerSpec });
     }
 
-    private async applyEndpoint() {
+    private async applyEndpoint():Promise<Container> {
         const container = this.container;
         const endpointSpec = <EndpointSpec>this.entitySpec;
 
-        await EndpointApplier.go({ container, endpointSpec });
-    }
-
-    private static throwInvalidEntityType(type:Type):never {
-        throw new Error(`Got invalid entity type: ${type}.`);
+        return EndpointApplier.go({ container, endpointSpec });
     }
 
     private readonly container:Container;

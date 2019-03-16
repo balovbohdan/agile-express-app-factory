@@ -2,7 +2,6 @@ import {ListenersImporter} from './ListenersImporter';
 import {Container} from '../../lib/endpoints/container';
 import {EndpointSpec} from '../../lib/endpoints/specifiers';
 import {Listener} from '../../lib/endpoints/entities/entity';
-import {PathCreator} from '../../lib/endpoints/entities/entity/utils';
 
 type Props = {
     container:Container;
@@ -10,7 +9,7 @@ type Props = {
 };
 
 export class ListenersApplier {
-    static go(props:Props) {
+    static go(props:Props):Promise<Container> {
         const self = new ListenersApplier(props);
 
         return self.go();
@@ -20,7 +19,13 @@ export class ListenersApplier {
         this.props = props;
     }
 
-    private async go() {
+    private async go():Promise<Container> {
+        await this.doGo();
+
+        return this.props.container;
+    }
+
+    private async doGo() {
         const listeners = await this.importListeners();
 
         for (let method in listeners)
@@ -29,20 +34,9 @@ export class ListenersApplier {
     }
 
     private applyListener(method:string, listener:Listener) {
-        const {core} = this.props.container;
+        const {container:{core}, endpointSpec:{name}} = this.props;
 
-        const path = this.getEndpointPath();
-
-        core[method](path, listener);
-    }
-
-    private getEndpointPath() {
-        const {container, endpointSpec:entitySpec} = this.props;
-
-        return PathCreator.create({
-            container,
-            entitySpec
-        });
+        core[method](`/${name}`, listener);
     }
 
     private importListeners() {
