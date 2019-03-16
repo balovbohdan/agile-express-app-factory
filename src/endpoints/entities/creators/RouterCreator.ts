@@ -4,7 +4,7 @@ import {Router as CoreRouter} from 'express-serve-static-core';
 import {Router} from '../entity';
 import {Container, factories} from '../../container';
 import {EntityApplierByContainer} from '../appliers';
-import {EntitySpec, RouterSpec} from '../../specifiers';
+import {EntitySpec, RouterSpec} from '../specifiers';
 
 type Props = {
     container:Container;

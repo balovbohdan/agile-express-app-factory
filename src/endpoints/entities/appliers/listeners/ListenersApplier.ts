@@ -1,7 +1,7 @@
+import {Listener} from '../../entity';
+import {Container} from '../../../container';
+import {EndpointSpec} from '../../specifiers';
 import {ListenersImporter} from './ListenersImporter';
-import {Container} from '../../lib/endpoints/container';
-import {EndpointSpec} from '../../lib/endpoints/specifiers';
-import {Listener} from '../../lib/endpoints/entities/entity';
 
 type Props = {
     container:Container;
@@ -34,9 +34,9 @@ export class ListenersApplier {
     }
 
     private applyListener(method:string, listener:Listener) {
-        const {container:{core}, endpointSpec:{name}} = this.props;
+        const {container:{core}, endpointSpec:{path}} = this.props;
 
-        core[method](`/${name}`, listener);
+        core[method](path, listener);
     }
 
     private importListeners() {

@@ -1,6 +1,6 @@
 import {Container} from '../../container';
 import {RouterCreator} from '../creators';
-import {RouterSpec} from '../../specifiers';
+import {RouterSpec} from '../specifiers';
 import {EntityToContainerApplier} from './EntityToContainerApplier';
 
 type Props = {

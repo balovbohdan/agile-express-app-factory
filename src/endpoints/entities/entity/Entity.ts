@@ -1,7 +1,7 @@
 import {Request, Response} from 'express';
 import {Router as CoreRouter} from 'express-serve-static-core';
 
-import {EndpointSpec, RouterSpec} from '../../specifiers';
+import {EndpointSpec, RouterSpec} from '../specifiers';
 
 export type Entity = Router|Endpoint;
 

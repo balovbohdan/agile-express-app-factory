@@ -1,5 +1,5 @@
 import {Container} from '../../container';
-import {ListenersApplier} from '../../../../listeners/utils';
+import {ListenersApplier} from './listeners';
 import {Entity, Endpoint, Router, TypeChecker} from '../entity';
 
 type Props = {
@@ -32,9 +32,9 @@ export class EntityToContainerApplier {
     }
 
     private applyAsRouter():Container {
-        const {router, spec:{name}} = <Router>this.entity;
+        const {router, spec:{path}} = <Router>this.entity;
 
-        this.container.core.use(`/${name}`, router);
+        this.container.core.use(path, router);
 
         return this.container;
     }

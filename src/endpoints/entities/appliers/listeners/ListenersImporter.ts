@@ -1,6 +1,6 @@
-import {Container} from '../../lib/endpoints/container';
-import {EndpointSpec} from '../../lib/endpoints/specifiers';
-import {Listener} from '../../lib/endpoints/entities/entity';
+import {Listener} from '../../entity';
+import {Container} from '../../../container';
+import {EndpointSpec} from '../../specifiers';
 
 type Props = {
     container:Container;
@@ -31,7 +31,7 @@ export class ListenersImporter {
         const {path} = this.container;
         const {name} = this.endpointSpec;
 
-        return `../listeners` + path + name;
+        return `../../../../listeners` + path + name;
     }
 
     private readonly container:Container;

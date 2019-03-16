@@ -1,6 +1,6 @@
-import {RouterSpec} from '../../specifiers';
-import {RouterCreator} from './RouterCreator';
 import {Container} from '../../container';
+import {RouterSpec} from '../specifiers';
+import {RouterCreator} from './RouterCreator';
 
 type Props = {
     container:Container;

@@ -1,6 +1,6 @@
 import {Endpoint} from '../entity';
 import {Container} from '../../container';
-import {EndpointSpec} from '../../specifiers';
+import {EndpointSpec} from '../specifiers';
 import {EntityToContainerApplier} from './EntityToContainerApplier';
 
 type Data = {

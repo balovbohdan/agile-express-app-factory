@@ -1,6 +1,6 @@
 import {Application} from 'express';
 
-import {EntitySpec} from '../../specifiers';
+import {EntitySpec} from '../specifiers';
 import {factories, Container} from '../../container';
 import {EntityApplierByContainer} from './EntityApplierByContainer';
 

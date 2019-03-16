@@ -1,5 +1,5 @@
 import {Container} from '../../../container';
-import {EntitySpec} from '../../../specifiers';
+import {EntitySpec} from '../../specifiers';
 
 type Props = {
     container:Container;

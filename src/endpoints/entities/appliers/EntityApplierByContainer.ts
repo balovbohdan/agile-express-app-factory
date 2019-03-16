@@ -2,7 +2,7 @@ import {Type} from '../entity';
 import {Container} from '../../container';
 import {RouterApplier} from './RouterApplier';
 import {EndpointApplier} from './EndpointApplier';
-import {EndpointSpec, EntitySpec, RouterSpec} from '../../specifiers';
+import {EndpointSpec, EntitySpec, RouterSpec} from '../specifiers';
 
 type Props = {
     container:Container;

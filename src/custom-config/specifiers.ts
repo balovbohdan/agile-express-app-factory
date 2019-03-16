@@ -1,6 +1,7 @@
-import {Type} from '../lib/endpoints/entities/entity';
+import {Type} from '../endpoints/entities/entity';
+import {EntitiesSpec} from '../endpoints/entities/specifiers/types';
 
-export const specifiers = [
+export const specifiers:EntitiesSpec = [
     {
         name: 'foo',
         type: Type.ENDPOINT
